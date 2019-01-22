@@ -22,8 +22,11 @@
 \input{includes/preamble}
 \input{includes/defs}
 \input{includes/thesisdefs}
-%\svnidlong{$LastChangedBy$}{$LastChangedRevision$}{$LastChangedDate$}{$HeadURL: http://freevariable.com/dissertation/branches/diss-template/dissertation.tex $} 
 
+%\svnidlong{$LastChangedBy$}{$LastChangedRevision$}{$LastChangedDate$
+
+\setlrmarginsandblock{1in}{1in}{*}
+\checkandfixthelayout 
 \clearpage\pagenumbering{roman}  % This makes the page numbers Roman (i, ii, etc)
 
 \title{Ion thermal transport and heating in tearing suppressed RFP plasmas}
@@ -33,18 +36,10 @@
 \committeeone{Daniel J. Den Hartog}
 \committeetwo{Mark D. Nornberg}
 \committeethree{John S. Sarff}
-\committeefour{Some Other Professor}
-\committeefive{Yet Another Professor}
+\committeefour{Carl Sovenic}
+\committeefive{Paul Terry}
 
-% if you use any additional committe members you will need to uncomment
-% the corresponding lines 107 and/or 108 in thesisdef.tex You may also need
-% to adjust the value for \newcommand\@thesistitlemedskip{0.25in} and 
-% \newcommand\@thesistitlebigskip{0.55in} in line 32 to get it to all fit
-%\committeesix{Iam A. Professor, Associate Professor, Geography}
-%\committeeseven{Iam A. Professor, Professor, Computer Sciences}
-
-
-\date{2018}
+\date{2019}
 
 \begin{document}
 
@@ -69,21 +64,27 @@
 \clearpage\pagenumbering{arabic}
 
 %% Now include the tex files for each chapter, like so (I put these in separate dirs): 
-\include{1_Introduction/ch_1}
-\include{2_Experimental_hardware/ch_2}
-\include{3_transport_modeling/ch_3}
-\include{4_Core_ion_transport/ch_4}
-\include{5_m0_and_impurity_heating/ch_5}
+\include{1_Introduction/ch_intro}
+\include{transport_modeling/ch_model}
+\include{implementation/implementation}
+\include{ion_transport_results/ch_core_transport}
+\include{m0_and_impurity_heating/ch_m0}
 \include{6_Conclusions/ch_x}
+
 
 % \include{related/related}
 
 %% etc, etc.
 
 %% Do you have appendices?  If so, add them here, just like chapters.
-% \begin{appendices}
+\begin{appendices}
 % \include{backmatter/appendix1}
-% \end{appendices}
+\include{appendices/app1_notation}
+\include{appendices/app2_code}
+\include{appendices/app3_manuals}
+
+    
+\end{appendices}
 
 
 

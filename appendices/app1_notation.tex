@@ -1,0 +1,59 @@
+\chapter{Notes on terminology and notation}\label{app:term}
+\begin{refsection}
+
+
+I have often been confused by the question of terminology and notation in physics, and I suspect that this work of mine is not the exception as far as confusing terminology is concerned. In this work I try to keep the notation consistent and as much as possible, only assign one 'meaning' to any letter. Unfortunately, between the latin and Greek alphabets are only so long, and Chinese characters are not generally accepted in equations. In this appendix layout a reference for notation of various physics parameters, as well as discussion of potentially confusing terminology.
+
+Starting with the basics,
+\begin{center}\begin{tabular}{c|c}
+     $\mathds{N}$ &  Index of refraction\\
+     $n$ & Density \\
+     $n_e$ & Electron density\\
+     $n_i$ & Ion density, deuterium specifically.\\
+     $\lambda$ & Wavelength
+\end{tabular}\end{center}
+
+and common physics constants,
+\begin{center}\begin{tabular}{c|c}
+     $\mathds{N}$ &  Index of refraction\\
+     $n$ & Density \\
+     $n_e$ & Electron density\\
+     $n_i$ & Ion density, deuterium specifically.\\
+     $\lambda$ & Wavelength
+\end{tabular}\end{center}
+
+
+
+\section{Power terms}\label{app_sec:power_terms}
+
+As this is a thesis deal with thermal transport modeling, thermal power terms are pervasive. Unless otherwise stated, these terms are power densities $P = 3/2nk_b \frac{\partial}{\partial t}T$ in units of [$W/m^3$], and the subscript describes the type of mechanism. Similarly, unless otherwise specified, the power terms refers to power flow into the majority ion species as positive. So broadly speaking, heating terms have $P > 0$ and loss terms have $P < 0$.
+
+There is the additional consideration for mechanisms that affect the ion density and thermal energy at the same time. This includes all the mechanisms that affects density, as any given 'new' ion will have a certain amount of thermal energy associated with it. An good example of this is the electron impact ionization of neutrals. As stated in section\ref{sec:cx_and_impact}, the electron impact ionization of warm neutrals represents a net gain of thermal energy, but as it also represents a density source term. Since these neutrals typically have a temperature less $T_i$, the process cools the plasma despite representing a gain of thermal energy. The ionization of neutrals are better thought of as a gain of pressure. These power terms do not obey the power to temperature related above. Instead:
+\begin{align}
+    P &= 3/2k_b \frac{\partial}{\partial t}(n T) \\
+    \frac{2P}{3k_b} &= T\partialt n + n \partialt T \\
+    \partialt T &= \frac{2P}{3k_b} - T\partialt n 
+\end{align}
+
+Note that does not directly reflect how these values are calculated in the code, as the figure of merit being calculated and saved by the code is total thermal energy and not temperature. The temperature is only calculated afterwards as an comparison to measurement. 
+
+
+%TODO, actually make this into a table.
+$P_{\text{e-impact}}$ is the net power from electron impact ionization.
+$P_{\text{flow cons}}$
+$P_{\text{comp work}}$
+
+
+\section{Relating to charge exchange spectroscopy}
+
+A brief but important note on terminology regarding charge exchange measurements. Consider the case where a $C^{6+}$ ion charge exchanges with a neutral, thus gaining an electron and becoming $C^{5+}$, but immediately emits a photon as the electron de-excites. The observations made through this process would reflect the temperature, velocity, and density of the $C^{6+}$ charge state. However, the emission line is the same as if an $C^{5+}$ ion undergoes electron impact excitation, referred to as a CVI emission line. Hence, when talking about specific emission line and how it relates to the spectrometer, the Roman numeral notation (eg, 343nm CVI line) is used. Otherwise, the text will refer to the particular ion charge state being measured (eg, $C^{6+}$ or $C^{5+}$), when ever relevant, it will also be specified if the measurement made is 'active', that is localized and through CHERS, or 'passive', that is through ion Doppler spectroscopy. 
+
+Further, there is the minor distinction made in this these between ion Doppler spectroscopy (IDS): the set of physical process and principles described in section \ref{sec:ids}, and the Ion Doppler Spectrometer mk. I and mk. II (IDS-I and IDS-II): the physical spectrometers used at MST for both passive IDS measurements and active CHERS measurements.
+
+\section{The radial coordinate $\rho_v$}\label{app:rhov}
+
+The radial coordinate used for the modeling in this work is is $\rho_v$ as opposed to the more straight forward minor radius r. $\rho_v$ is, approximately, the radius of the relevant flux surface, since flux surfaces in axisymmetric MST plasmas are nearly perfect circles. Alternatively, it is equivalent to the volume average minor radius to the magnetic axis. It is chosen over the minor radius r as the radial coordinate for two reasons. Firstly it better accounts for the fact that the flux surfaces are Shafronov shifted outwards by a varying amount, and secondly, existing code important to this modeling work, in particular MSTfit, uses $\rho_v$ as it's radial coordinates. However, in these PPCD plasmas the ultimately difference between r and $\rho_v$ are small, especially in terms of $r/a$ vs $\rho_v/a$, typically within or close to the radial position uncertainty of any given diagnostic measurement. This is the reason why the impurity levels taken from M. Nornberg's paper\cite{Nornberg2018} is incorporated on a $\frac{r}{a}\approx\frac{\rho_v}{a}$ basis, instead of redoing the analysis in the shifted coordinate. 
+
+
+\printbibliography
+\end{refsection}

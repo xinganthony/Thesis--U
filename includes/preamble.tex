@@ -15,6 +15,7 @@
 % with this software (like your dissertation).
 \usepackage{float}
 \usepackage[section]{placeins}
+\usepackage{dsfont}
 %% You should use natbib
 %\
 %\IfFileExists{natbib.sty}{%
@@ -22,17 +23,22 @@
 %\usepackage{chapterbib}
 %}{}
 \usepackage[backend=biber, style=phys]{biblatex}
-\bibliography{thesis.bib}
+\bibliography{library.bib}
+%\addbibresource{library.bib}
 %% You probably need appendix, if you want appendices
-\IfFileExists{appendix.sty}{%
-\usepackage{appendix}%
-}{}
+%\renewcommand\cftappendixname{\appendixname~}
+\usepackage{appendix}
+
+
 
 \usepackage{CJKutf8}
 
 %set table of content and numbering depth
 \setcounter{tocdepth}{2}
 \setcounter{secnumdepth}{3}
+
+%Some macros
+\newcommand{\xtensor}[1]{\overline{\overline{#1}}}
 
 %% the spacing in memoir is weird, you'll need to use this
 \DisemulatePackage{setspace}
@@ -62,6 +68,7 @@
 \usepackage{amsthm}
 %\usepackage{theorem}
 \usepackage{hyperref}
+\usepackage{gensymb}
 
 \IfFileExists{mathpartir.sty}{%
 \usepackage{mathpartir}%
@@ -113,6 +120,8 @@
 \else
 \usepackage{graphicx}
 \fi
+
+\usepackage{subcaption}
 
 \usepackage{makeidx}
 \makeindex

@@ -22,10 +22,12 @@ temperature and duration. Everything else is commonly refereed to as
 Field Pinch (RFP). In particular, confinement, transport, and heating
 characteristics of ions in the RFP.
 
+%=============================================
+\section{Fusion power and ion confinement}
 
-\section{The Reversed Field Pinch and its history}
+\section{Reversed Field Pinch, sawtooth, and tearing mode reduction}
 
-\begin{figure}[!htb]
+/neoclassica\begin{figure}[!htb]
 	\centering
 	\includegraphics[width = 0.75\linewidth]{./1_Introduction/queen_at_zeta.jpg}
     \label{fig:Queen_at_ZETA}
@@ -105,7 +107,10 @@ characteristics.
 
 \end{figure}
 
-\section{Tearing modes, it's suppression via PPCD, and improved confinement}
+Research into the RFP configuration led to a series of larger and higher current devices. Currently the leading RFP research devicecs are the Reversed-Field eXperiment\cite{Bartiromo1999RecentExperiment} (RFX) in Padua, Italy, and the Madison Symmetric Torus\cite{Dexter1991} (MST) in Madison, Wisconsin. Comparatively, RFX is capable of driving significantly higher current for a longer duration, where as MST was designed around a close fitting conducting shell to stabilize resistive wall modes. This work is performed on MST, and a more in depth introduction to the device can be found in section \ref{sec:MST}.
+
+%=============================
+
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[width = .6\linewidth]{./1_Introduction/the_sawtooth_cycle.PNG}
@@ -127,14 +132,17 @@ number of resonant surfaces, especially close to the reversal surface.
 These closely spaced resonant surfaces and the tearing mode instabilities that
 they 'host' creates regions of overlapping magnetic islands that turns the
 magnetic field stochastic, greatly reducing the confinement characteristics.
-Further, the tearing modes in standard RFP enables the violent relaxations
-events know as the sawtooth crashes, where the accumulation of free energy in
-the form of parallel current ($J_{\parallel}$) gradient will cause a sudden
-increase of magnetic reconnection and tearing mode fluctuation. This process
-then repeats as the parallel current gradient builds up again in what is know
-as the sawtooth cycle (fig \ref{fig:sawtooth_cycle}). Though ion heating is
-observed with the sawtooth
-crashes\cite{Bodin1980Reversed-field-pinchReserarch}, they greatly disrupts
+
+The primary drive of the tearing mode instabilities are the current density gradient\cite{Schnack1987Semi-implicitCalculations,Ho1991NonlinearPinches}. Specifically $\nabla\lambda$ where,
+
+\begin{align}
+    \lambda &= \frac{J_{\parallel}}{B}\\
+    &= \frac{\vec{J}\cdot\vec{B}}{B^2}\nonumber
+\end{align}
+where $J$ is current, $B$ is magnetic field, and all quantities are flux surface averages. 
+
+In standard RFP operation, the $\lambda$ profile tends to peak in the core of the plasma as the result of current drive, providing free energy to core resonant tearing modes. As the current peaks, the core tearing modes grow and nonlinearly couples to each other, until they are sufficiently large to trigger a violent relaxation event called a sawtooth crash. This redistributes the current profile such that toroidal current in the core decreases while the poloidal current in the edge increases\cite{Terry2004MeasurementTorus}. This effectively flattens the $\lambda$ profile and decreases the drive of the tearing instabilities. But the process repeats as the current profile peaks again in a cycle that is refered to as the sawtooth cycle (fig. \ref{fig:sawtooth_cycle}). Though ion heating is
+observed with the sawtooth crashes\cite{Bodin1980Reversed-field-pinchReserarch}, they greatly disrupts
 confinement of particles and limit the RFP's viability as a fusion concept.
 
 \begin{figure}[!htb]
@@ -144,44 +152,48 @@ confinement of particles and limit the RFP's viability as a fusion concept.
 	\caption[An illustration of violent relaxation]{An artist's impression of a violent relaxation event. By the Lego Grad Student}
 \end{figure}%
 
-One very successful way of reducing tearing mode activity and its detrimental
-effects on confinement is through the control of $J_{\parallel}$ profile,
-thereby reducing the available free energy from it's gradient at the resonant
-surfaces\cite{Sarff1995TransportPinch}. On MST, this is done inductively
-through a process called Pulsed Parallel Current Drive (PPCD). PPCD drives
-parallel currently near the reversal surface (details discussed in section
-\ref{sec:MST}), essentially aiding the plasma in reaching itspreferred' state
-of with a flat $J_{\parallel}$ profile so it doesn't 'have to' through 'the use
-of' sawtooth crashes. Further refinements of this process is also able to
-reduce the residual, m = 0 related, magnetic reconnection, achieving
-significantly improved confinement for $\geq 10ms$ \cite{Chapman2001}.
+One successful way of improving confinement on the RFP, therefore, is through the control of $J_{\parallel}$ profile. This is done inductively on MST through a process called Pulsed Parallel Current Drive (PPCD). PPCD can be thought of as 'helping' the plasma to drive parallel current in the edge region, and thereby flattening the $\lambda$ profile\cite{Sarff1995TransportPinch}. In particular, a series of 4 high voltage capacitor banks discharges are used to apply voltage to the toroidal field circuit. This result in a series of 4 poloidal field pulses, which raises $E_{\parallel}$ in the edge. Thus, PPCD is a transient current drive and profiles of the RFP continually evolve during this period. 
 
+With successful applications of PPCD, sawtooth cycles are interrupted which allows a new class of dynamo events called m = 0 bursts to come to the forefront. Details regarding these m=0 bursts is forthcoming in section \ref{sec:m0_intro}. In the meantime it suffice to say that the frequency of these m=0 bursts can be significantly reduced by reversing the applied toroidal electric field in the edge of the plasma\cite{Chapman2001}.
 
+\section{PPCD and it's effect on ion confinement} \label{sec:PPCD_characteristic}
 
-\section{Characteristics of PPCD plasma}
+\begin{figure}
+    \centering
+    \includegraphics{./1_Introduction/ppcd_fluc.png}
+    \caption[Typical tearing mode amplitude in PPCD]{Typical tearing mode amplitude in PPCD [[TODO: remake this plot with matplotlib and my specific data.}
+    \label{fig:ppcd_fluc}
+\end{figure}
 
 PPCD reduces the tearing mode fluctuation levels significantly as shown in
-figure \ref{fig:ppcd_fluc}
+figure \ref{fig:ppcd_fluc}, and during the period of improved confinement, $T_e$ is known to increase dramatically as compared to standard MST plasma, while $T_i$ is observed to be relatively flat, resulting in temperature differences as high as $T_e \approx 2T_i$ in the core of the plasma. 
 
 
-It is well known that magnetic reconnection such as sawtooth are bad, but are
-they cruel? It's a question that have yet to answered in all these years. How
-do sawtooth events stack up again the terrible events perpetrated by powerful
-men through the ages such as war and famine and worse things. We don't really
-know.
+At the same time, recent observations shows that drift wave turbulence, likely associated Trapped Electron Mode, continues to be present in PPCD plasma in the edge. 
+
+Though the electron transport properties in PPCD have been studied as part of several thesis previous, the ion transport, particularly the ion thermal transport has not been studied in the same detail. Despite $T_i$ lagging far behind $T_e$, it is thought of as anomalously high in previous estimations. 
 
 
 
-They are pretty to look at and stuff. Also Jim Reynolds predicted pinch. Also
+%What do I need to get across in this section?
+% 0. Reduction in tearing mode fluc levels. 
+% 1. Significantly improvement in confinement/reduction in transport terms.
+% 2. Separation of ion and electron characteristics.
+% 3. Anomalous heating? of the ions?
+% 4. Classical impurity particle transport.
+% 5. Numerical prediction, especially with regards to the pinch. 
+% 6. The persistence of m = 0 bursts. 
+
+ Also Jim Reynolds predicted pinch. Also
 significant reduction in fluctuation. Also $T_e$ increase and hot, and have
 bursts occasionally, also transport transport transport also stochasticity
 decreases, also transient, and some other stuff.
 
 
-[[Both Santhosh's observation of classical transport but also Reynold's prediction]]
+[[Both Santhosh's observation of classical transport but also Reynold's prediction, and Tulio I think.]]
 
 
-\section{m = 0 bursts in EC and PPCD plasmas}
+\section{m = 0 bursts in EC and PPCD plasmas}\label{sec:m0_intro}
 
 Bill Young looked at the m = 0 in EC plasmas because he can't look at sawtooth.
 Ring like structure, and what not. Also D. Adams made a post for it, measuring
@@ -191,7 +203,7 @@ the ring structure, looks good.
 [[Bill Young's stuff will be here, as well whatever he cites.]]
 
 
-\section{What this thesis is all about}
+\section{Why pursue 1-D classical transport modeling}\label{sec:signpost}
 [[Signposting is important]]
 
 

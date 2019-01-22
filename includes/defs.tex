@@ -44,4 +44,37 @@
 \newcommand{\vcinfo}{}%
 }
 
+%TeXcount macros
+\newcommand{\detailtexcount}[1]{%
+  \immediate\write18{texcount -merge -sum -incbib -dir #1.tex > #1.wcdetail }%
+  \verbatiminput{#1.wcdetail}%
+}
+
+\newcommand{\quickwordcount}[1]{%
+  \immediate\write18{texcount -1 -sum -merge #1.tex > #1-words.sum }%
+  \input{#1-words.sum} words%
+}
+
+%   -sum, -sum=   Make sum of all word and equation counts. May also use
+%              -sum=#[,#] with up to 7 numbers to indicate how each of the
+%              counts (text words, header words, caption words, #headers,
+%              #floats, #inlined formulae, #displayed formulae) are summed.
+%              The default sum (if only -sum is used) is the same as
+%              -sum=1,1,1,0,0,1,1.
+
+
+\newcommand{\quickcharcount}[1]{%
+  \immediate\write18{texcount -1 -sum -merge -char #1.tex > #1-chars.sum }%
+  \input{#1-chars.sum} characters (not including spaces)%
+}
+
+%%macros to reduce typing
+\newcommand{\partialt}{\frac{\partial}{\partial t}}
+\newcommand{\ecb}{$\vec{E}\times\vec{B}$\ }
+\newcommand{\mecb}{\vec{E}\times\vec{B}}
+\newcommand{\dal}{D_{\alpha}}
+\newcommand{\chisq}{$\chi^2$}
+\newcommand{\adhoc}{\textit{ad hoc\ }}
+
+
 %%%%% end convenience definitions

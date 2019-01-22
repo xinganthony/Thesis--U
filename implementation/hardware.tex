@@ -1,0 +1,65 @@
+ Moving on from the discussion of the physics in the ion heat transport model, this chapter describes how the model is encoded as an initial-value time evolution problem, the code structure and boundary conditions, and the diagnostic data used as inputs to the code to predict the evolution of the ion temperature profile throughout the enhanced confinement period of a PPCD discharge. %% Reworded this intro sentence a bit. Please check to see that it covers what you want to say -- MDN 
+ %While sizable and important, this is likely one of the least interesting chapters in this thesis. There are no results presented here. (Unnecessary -- MDN)
+ The first half of the chapter deals with the diagnostics relevant to this research, their capabilities, and how they are used in the modeling. Then I will discuss the modeling methods and considerations, especially implicit physics assumptions made. Finally I will go over some of the more explicit physics assumptions made as well as boundary conditions and such. 
+ % These last two sentences could be much more specific by indicating that the work you are doing is related to ion heat confinement which, for the plasmas densities under study, involves understanding the evolution of the ion temperature over several ms. As such, the relevant time scale is the one on which the equilbrium magnetic pressure varies. The confinement time is 10-15 msec, but since the electrons are heating up during the discharge, the equilibrium evolves during this time. Therefore, although the small-scale dynamics responsible for transport involve much faster fluctuation time scales, the evolution of the equilibrium is well-characterized on the 1 msec (or 500 mircosecond) timescale. All the dynamics faster than this timescale are considered part of the transport physics and parameterized by advection and diffusion coefficients.
+ At it's core, this modeling work is a compromise between making it simpler through approximations so that it could be better understood and completed in a reasonable time, but still preserving enough details and grounding in data so that it produces insightful and believable results. In someways, this chapter described and justifies those compromises. 
+
+%===========
+%====MST====
+\section{A summary of MST and it's diagnostics}\label{sec:MST}
+Let's begin with the plasma experiment itself. The Madison Symmetric Torus is a reversed field pinch experiment located in Madison, WI. It was constructed in the 1980s, achieving first plasma in 1988\cite{Dexter1991}. It was designed as a proof of concept device to demonstrate the RFP fusion\cite{Najmabadi1999}. 
+% I added this line to put the diagnostics you use in the historical context as well
+A number of advanced diagnostics were designed and fielded on the MST as part of a proof of principal program for RFP fusion. %%
+The MST is capable of a wide range of plasma conditions and configurations, and improved confinement through current profile control was achieved and refined in the late 1990s\cite{Sarff1995TransportPinch, Chapman2002HighPinch}. This method, referred to as Pulse Parallel Current Drive (PPCD) is a transient process that greatly reduces the tearing mode fluctuations that %plagues
+leads to heat transport by stochastization of the magnetic field in
+the standard RFP plasma.
+To help achieve consistent PPCD plasmas at high currents, the walls are well conditioned, no probes are inserted, and gas puff fueling is carefully timed to preceed the PPCD period. These plasmas are too hot for probe measurements, but instead, a variety of noninvasive advanced diagnostics provide information about the core plasma including interferometry, Thomson scattering measurements, and visible light emission measurements. An array of magnetic pickup coils in the walls provide boundary magnetic measurements. 
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics{./implementation/MST_model_diagram}
+	\label{fig:MST_diagram}
+	\caption[Diagram of MST]{Diagram of MST. Note the close fitting shell, as well as the holes on the bottom of the vessel that lead to the pumping manifold. The pumping duct location will become relevant in section \ref{sec:neutral_dynamics}.}
+\end{figure}
+
+\begin{table}[]
+    \centering
+    \begin{tabular}{||c|c|c||}
+        Parameter & MST range & experiment range\\
+        \hline
+        Major radius ($R$)& 1.5 [m] & -same- \\
+        Minor radius ($r$)& 0.52 [m] & -same- \\
+        Plasma Current ($I_p$) & 50 ~ 500 [kA] & 480 -500 [kA] \\
+        Magnetic Field ($B_t(0)$) & $\leq 0.6$ [T] & $~0.5$/ [T] \\
+        Electron Density ($n_e$) & $0.5 - 3 \times 10^{19}$ [$m^{-3}$] & ~$0.7 \times 10^{19}$ [$m^{-3}$]\\
+        Electron Temperature* ($T_e$) & 0.05 ~ 1.8 [keV] & 0.9 ~1.5 [keV] \\
+        
+    \end{tabular}
+    \caption[MST parameters]{Basic parameters of MST. The experiment range refers to the parameters of the high current improved confinement plasmas considered as part of this work. }
+    \label{tab:my_label}
+\end{table}
+
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics{./implementation/MST_diags.PNG}
+	\label{fig:MST_diagnostic_diagram}
+	\caption[Diagram of diagnostic locations]{A diagram of the MST diagnostics. For PPCD, the toroidal separation of the diagnostic is typically not very important due to the good asymmetry displayed by the plasma. However, for the m=0 burst studies detailed in chapter \ref{ch:m0}, it becomes more relevant. (Reproduced from R. Dexter et al. Ref\cite{Dexter100}}
+\end{figure}
+
+MST has a wide range of diagnostics, many of them designed to operate at high data frequencies compared with %to 
+%%% ("compared with" is used to contrast while "compared with" is used to identify similarities) -- MDN 
+other devices. Ion transport is dependent on a large number of plasma parameters even when only classical effects are considered. Hence, a range of MST's diagnostics are used. The rest of this section aims to give a summary of the principal of operation for the key diagnostics as well as the analysis techniques used to interpret %process (MDN)
+the raw diagnostic data. 
+
+%============
+%===FIR===
+\input{implementation/diagnostics/fir.tex}
+
+%==D_alpha==
+\input{implementation/diagnostics/d_alpha.tex}
+
+
+\input{implementation/diagnostics/ts.tex}
+
+\input{implementation/diagnostics/ids.tex}

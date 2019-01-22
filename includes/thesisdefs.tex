@@ -31,7 +31,7 @@
 
 \newcommand\@thesistitlemedskip{0.25in}
 \newcommand\@thesistitlebigskip{0.55in}
-\newcommand{\degree}[1]{\gdef\@degree{#1}}
+%\newcommand{\degree}[1]{\gdef\@degree{#1}}
 \newcommand{\project}{\gdef\@doctype{A masters project report}}
 \newcommand{\prelim}{\gdef\@doctype{A preliminary report}}
 \newcommand{\thesis}{\gdef\@doctype{A thesis}}
@@ -113,7 +113,7 @@
   \setcounter{footnote}{0}
   \setcounter{page}{1} %title page is NOT counted
   \let\thanks\relax
-  \let\maketitle\relax \let\degree\relax \let\project\relax \let\prelim\relax
+  \let\maketitle\relax  \let\project\relax \let\prelim\relax %\let\degree\relax
   \let\department\relax
   \gdef\@thanks{}\gdef\@degree{}\gdef\@doctype{}
   \gdef\@department{}

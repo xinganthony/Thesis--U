@@ -1,0 +1,10 @@
+\chapter{Coding structure, techniques, and considerations}\label{app:code}
+
+In this appendix serves as a discussion of the methods (and reasons why) the code uses to propagate the model on two different time scales, of the code structure, of methods to enforce pseudo-self-consistency using predictor corrector methods, as well as mathematical and coding considerations relating to the modeling code. This appendix serves as a guide for any scientist who like to understand the details of the model construction, possibly to improve or adjust it's function. For a more user friendly manual on how to use the code and how to interpret the results, see Appendix \ref{app:manual}. Unless otherwise mentioned, all the codes discussed in this section are in IDL.
+
+
+
+
+The setup is performed by the function called analyze\_set(). It's purpose it quite simple: to automate the generation of input files as well as the analysis of a set of plasma shots, either as an ensemble, or as a list of individual shots. Even thought it's structure was made for ensemble analysis, it can also process a list of a single shot, essentially automating the single shot analysis procedure as well. As the code was written primarily to enable ensembling analysis, that is the view point I will take in describing the structure. Single shot analysis is enabled by treating it as an ensemble of one shot. 
+
+The setup first determines time block  division of the analysis period. Then, it reads data from the MDSplus tree into IDL as MST\_signal objects by hijacking the data acquisition routines in MSTfit. The object structure provides the data handling capabilities such as truncating the data to desired segments and ensemble averaging across the same signal from several shots. Then for each time block, the code generates a *.mst file that is required by MSTfit, using the same methods used by MSTfit itself, but instead of taking the data direction from MDSplus, the code uses the signal objects.
