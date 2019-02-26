@@ -1,0 +1,19 @@
+%This file is discared, and only remain for backup/nostalgia/just-in-case reasons, and should not be in the compile path.
+
+One of the candidate to explain anomalous  ion heating in MST is the stochastic heating mechanism set out by G. Fiksel\cite{Fiksel2009}. It is illustrative to make a rough estimate of this heating power. The stochastic ion heating process produces a heating rate of:
+\begin{align}
+    a &= b+c\\
+    \gamma_{\epsilon} &= \frac{1}{v^2_{T_i}}\frac{\partial v^2_{\perp}}{\partial t}\\
+    & = \frac{E^2_r D_{\perp}}{\delta^2_r B^2_0 v^2_{T_i}}
+\end{align}
+To estimate the heating due to this mechanism, the effective $D_\perp$ due to fluctuations needs to be estimated first.
+The work of T. Nishizawa\cite{Nishizawa2018} measured the drift wave turbulence in the plasma edge in high current PPCD (380kA, so not quite an identical case, but it makes an instructive comparison). The velocity fluctuation is measured as $|\Tilde{v}| \approx 0.8 km/s$. The magnetic reconnection length associated with driftwaves are usually estimated with the ion sound radius $\rho_s = sqrt{\frac{T_e}{T_i}}\rho_i$, where $\rho_i$ refers to the ion gyro radius. Using plasma parameters for the reversal surface from my shot ensemble ( $T_e = 400 eV$,$T_i = 180 eV$, and $|B| = 0.3 T$ ), the ion sound radius is calculated to be 0.96cm. Further, the velocity fluctuation is believed to be the result of fluctuating \ecb velocity due to $\Vec{E}$ fluctuations, we can calculate $\Tilde{E_{\text{tor}}}$ with,
+\begin{align}
+    \Tilde{v_r} &= \frac{\Tilde{E_{\text{tor}}}B_{\text{pol}}}{B^2}\\
+    \Tilde{E_{\text{tor}}} &= \frac{\Tilde{E_{text{tor}}}}{B}
+\end{align}
+given that $B = B_{\text{tor}}$ at the reversal surface. The equation result in $\Tilde{E_{\text{tor}}} = 2.6\time 10^2 V/m$. Note that the Fiksel's paper envisioned the heating mechanism to act as a response to $E_r$ fluctuations, but the two perpendicular directions are essentially interchangeable in terms of it's effect on heating, and thus $E_{\text{tor}}$ is used for this estimate. Using the estimation of $D_\perp ~ \delta_r \Tilde{v}$, result in $D_\perp \approx 8m^2/s$. The rest of the plasma parameters can be taken directed from the shot ensemble used by the model, resulting in $v_{\text{th}} = 1\times10^5 m/s$ (\textit{i.e.}  ~ 200eV), $n_i = 4\times10^18 /m^3$, and $|B| = 0.3 T$, and further calculating the effective heating power as,
+\begin{align}
+    P_{\text{stochastic}} = \frac{3}{2}nkT\gamma_{\text{stochastic}}
+\end{align}
+the corresponding heating rate is 600 /s and the  heating power comes to $77kW/m^3$. Comparing that to the \textit{ad hoc} heating term needed in the model (figure \ref{fig:ad_hoc_v_gradient}), it is about twice the \adhoc heating term needed by the model. While it should be noted that the above estimate is very rough and based on fluctuation measurement at a different location in somewhat different plasmas, and thus the comparison between the \adhoc term in the model and the estimated stochastic heating cannot confirm or dis-confirm specific physical mechanisms, it remains important to point out that the estimate and the model are in the same ball park. It may be fruitful if a more direct measurement of the turbulence in 500kA PPCD can be performed for more exact calculation for turbulent/stochastic heating, in terms of determining the mechanism of the edge heating needed by the model to match observations.
