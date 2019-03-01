@@ -58,7 +58,7 @@ The contributions from each source (to density, for example) are treated as line
     \label{fig:neutral_vs_time}
 \end{figure}
 
-Unsurprisingly, the neutral density is edge dominated and decreases by about 2.5 orders of magnitudes as one 'travels' towards the core. The details can be seen in figure \ref{fig:DEGAS2_sources_and_density} and \ref{fig:DEGAS2_1d}. The edge neutral density is comparable with previous estimates, but the core density is about 1/4 of previous calculations using the NENE code~\cite{Eilerman2010}. % This comparison of the NENE and DEGAS2 code predictions for neutral density profiles that best fit observed neutral emission measurements doesn't really explain which model is more believable. Aside from the ad-hoc 50eV source, what are the differences between the two codes? 
+Unsurprisingly, the neutral density is edge dominated and decreases by about 2.5 orders of magnitudes as one 'travels' towards the core. The details can be seen in figure \ref{fig:DEGAS2_sources_and_density} and \ref{fig:DEGAS2_power_1d}. The edge neutral density is comparable with previous estimates, but the core density is about 1/4 of previous calculations using the NENE code~\cite{Ei}. % This comparison of the NENE and DEGAS2 code predictions for neutral density profiles that best fit observed neutral emission measurements doesn't really explain which model is more believable. Aside from the ad-hoc 50eV source, what are the differences between the two codes? 
 %Added more on the improvement DEGAS2 makes in first paragraph of section. -Xing
 Though when NENE is run for my particular shot ensemble, it returns results lower than that presented, and the core density from DEGAS2 is ~ 55\% of NENE. As pointed out above, the DEGAS2 fit have the advantage of not relying on an \textit{ad hoc} 50eV neutral source to achieve the fit, and the neutral density more self consistently show the effect of the Shafronov shift (see also figure \ref{fig:DEGAS2_sources_contrib}). 
 Further, the neutral density in PPCD is not entirely constant; the early part of PPCD sees the neutral density decreasing until around 16.5ms when it stabilizes until the end of PPCD (figure \ref{fig:neutral_vs_time}. This neutral density estimates is also in line with that from s. Kumar's measurement of Al charge state fractions in the core. The charge state fraction of Al$^{11+}$ to Al$^{13+}$ is very sensitive to neutral density as the charge exchange process keep the Al$^{13+}$ population down. DEGAS2's estimate of core neutral density. The DEGAS2 neutral density is still too might to match that needed by J. Waksman to explain the NBI heating effects observed. However, this is perhaps not a good direct comparison as his work are on well optimized low current (200kA) PPCD, which, other than the problem of differing plasma current as my parameters, is inherently difficult for $\dal$ observations to constrain neutral density as the emission measurements begin to approach noise levels of the detector. 
@@ -77,14 +77,14 @@ Another notable improvement of the understanding of the neutral dynamics is the 
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{ion_transport_results/DEGAS2_power_terms_2d.png}
-    \caption{DEGAS2 2D  A) charge exchange and B) impact ionization terms. Note the difference in the color bar range. Less obviously, the up/down asymmetry is also present in this plot. This result is from ensembled PPCD shots at 15ms.}
+    \caption[DEGAS2 charge exchange and impact ionization terms]{DEGAS2 2D  A) charge exchange and B) impact ionization terms. Note the difference in the color bar range. Less obviously, the up/down asymmetry is also present in this plot. This result is from ensembled PPCD shots at 15ms.}
     \label{fig:DEGAS2_power_2d}
 \end{figure}
 
 \begin{figure}
     \centering
     \includegraphics{ion_transport_results/DEGAS2_power_terms_1d.png}
-    \caption{1-D neutral power terms at 13ms, 15ms, and 17ms. The 'net neutral power' refers to the sum of the two terms, as electron impact ionization is a process that recovers some thermal energy from the neutrals fluid.}
+    \caption[1-D neutral power terms]{1-D neutral power terms at 13ms, 15ms, and 17ms. The 'net neutral power' refers to the sum of the two terms, as electron impact ionization is a process that recovers some thermal energy from the neutrals fluid.}
     %This plot should include 'net charge exchange loss'
     \label{fig:DEGAS2_power_1d}
 \end{figure}

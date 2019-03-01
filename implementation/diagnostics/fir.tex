@@ -1,6 +1,5 @@
 \subsection{Far Infrared Interferometer and Polarimeter}
-The Far InfraRed (FIR) interferometer-polarimeter is a laser diagnostic that employs two different physics principles to measure electron density as well as parallel magnetic field strength. While neither measurement directly informs ion transport, they are critical plasma parameters that are needed to calculate the various terms % which terms?
-in the model. I will start by giving a short introduction of the two separate physics principles of the interferometer and then that of the parameter. Then I will describe the FIR hardware as available on MST, and finally, I will describe the analysis and incorporation of raw diagnostic data. 
+The Far InfraRed (FIR) interferometer-polarimeter is a laser diagnostic that employs two different physics principles to measure electron density as well as parallel magnetic field strength. While neither measurement directly informs ion transport, they are critical plasma parameters that are needed to calculate the nearly all the power terms in the model. I will start by giving a short introduction of the two separate physics principles of the interferometer and then that of the polarimeter Then I will describe the FIR hardware as available on MST, and finally, I will describe the analysis and incorporation of raw diagnostic data. 
 
 The FIR interferometer relies on the fact that the index of refraction of the plasma is dependent upon the density of the plasma. In short, one laser beam is passed through the plasma, and then compared with a reference beam that passed through air. The relative phase lag is measured by the interferometer and information about the plasma density is extracted. 
 
@@ -19,7 +18,7 @@ where $\xtensor{\epsilon} = (1+\frac{i}{\omega\epsilon_0})$ is the isotropic die
 \begin{align}
     N^2 &= 1 - \frac{X(1-X)}{1-X-\frac{1}{2}Y^2 \sin^2\theta\pm [(\frac{1}{2}Y^2\sin^2\theta)^2 + (1-X)^2Y^2\cos^2\theta]^{\frac{1}{2}}}
 \end{align}
-where $N$ is the index of refraction, $X = \frac{\omega_p^2}{\omega^2}$ and $Y = \frac{\Omega}{\omega}$. Considering that the cyclotron frequency $\Omega$ is small compared to the FIR laser frequency $\omega$, then $Y \rightarrow 0$. Taking the zeroth-order approximation\cite{Hutchinson_2002},
+where $N$ is the index of refraction, $X = \frac{\omega_p^2}{\omega^2}$ and $Y = \frac{\Omega}{\omega}$. Considering that the cyclotron frequency $\Omega$ is small compared to the FIR laser frequency $\omega$, then $Y \rightarrow 0$. Taking the zeroth-order approximation\cite{hutchinson_2002},
 \begin{align}
 N^2 \approx 1 - \frac{\omega_p^2}{\omega^2}
 \end{align}
@@ -39,7 +38,7 @@ where the addition refers to the ordinary mode and the subtraction refers to the
     \alpha &= \frac{\Delta \phi}{2}\nonumber\\
     &= \frac{1}{2}(N_+ - N_-)\frac{\omega}{c}z \\
     &\approx \frac{e^2 \lambda^2}{8\pi m^2_e c^3 \epsilon_0}\int n_e \vec{B}\cdot d\vec{l} \nonumber \\
-    &= 2.62\times10^{-13}\lambda^2\int n_e{\vec{l}}\vec{B}\cdot d\vec{l} &\text{[For MST conditions]}
+    &= 2.62\times10^{-13}\lambda^2\int n_e \vec{B}\cdot d\vec{l} &\text{[For MST conditions]}
 \end{align}
 
 \begin{figure}[!htb]

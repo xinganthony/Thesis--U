@@ -152,7 +152,9 @@
 
 \def\umiabstract{
              \thispagestyle{empty}
-                  \addtocounter{page}{-1}
+                  %\addtocounter{page}{-1}
+                \chapter*{Abstract}
+                \addcontentsline{toc}{chapter}{Abstract}
                 \begin{center}
                   {\textbf{\expandafter\uppercase\expandafter{\@title}}}\\
                   \vspace{12pt}

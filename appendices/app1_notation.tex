@@ -4,22 +4,22 @@
 
 I have often been confused by the question of terminology and notation in physics, and I suspect that this work of mine is not the exception as far as confusing terminology is concerned. In this work I try to keep the notation consistent and as much as possible, only assign one 'meaning' to any letter. Unfortunately, between the latin and Greek alphabets are only so long, and Chinese characters are not generally accepted in equations. In this appendix layout a reference for notation of various physics parameters, as well as discussion of potentially confusing terminology.
 
-Starting with the basics,
-\begin{center}\begin{tabular}{c|c}
-     $\mathds{N}$ &  Index of refraction\\
-     $n$ & Density \\
-     $n_e$ & Electron density\\
-     $n_i$ & Ion density, deuterium specifically.\\
-     $\lambda$ & Wavelength
-\end{tabular}\end{center}
-
-and common physics constants,
-\begin{center}\begin{tabular}{c|c}
-     $\mathds{N}$ &  Index of refraction\\
-     $n$ & Density \\
-     $n_e$ & Electron density\\
-     $n_i$ & Ion density, deuterium specifically.\\
-     $\lambda$ & Wavelength
+Starting with a table of notation for basic plasma parameters,
+\begin{center}\begin{tabular}{p{1in}|p{3.5in}}
+     $N$ &  Index of refraction\\ \hline
+     $n$ & Density, subscripts e and i denotes electron and majority ion respectively\\ \hline
+     $T$ & Temperature, subscripts same as $n$\\ \hline
+     $t$ & Time\\ \hline
+     $E, B$ & Electric and Magnetic field respectively\\ \hline
+     $P$ & Thermal power (work) density\\ \hline
+     $p$ & Plasma pressure\\ \hline
+     $r$ & Minor radius \\ \hline
+     $\rho, \rho_v$ & Volume average minor radius to the magnetic axis of a given flux surface, see section \ref{app:rhov}\\ \hline
+     $q$ & Safety factor \\ \hline
+     $Q$ & Heat flux \\ \hline
+     $<\sigma v>$ & Average reaction rate assuming Maxwellian distribution\\ \hline
+     $S$ & (Ion or electron) source rate per volume\\ \hline
+     $\kappa$ & Thermal conduction coefficient, $=n\chi$\\
 \end{tabular}\end{center}
 
 
@@ -28,7 +28,7 @@ and common physics constants,
 
 As this is thesis deals with thermal transport modeling, thermal power terms are pervasive. Unless otherwise stated, these terms are power densities $P = 3/2nk_b \frac{\partial}{\partial t}T$ in units of [$W/m^3$], and the subscript describes the type of mechanism. Similarly, unless otherwise specified, the power terms refer to power flow into the majority ion species as positive. So broadly speaking, heating terms have $P > 0$ and loss terms have $P < 0$.
 
-There is the additional consideration for mechanisms that affect the ion density and thermal energy at the same time. This includes all the mechanisms that affects density, as any given 'new' population of ions will have a certain amount of thermal energy associated with it. A good example of this is the electron impact ionization of neutrals. As stated in section\ref{sec:cx_and_impact}, the electron impact ionization of warm neutrals represents a net gain of thermal energy, but it also represents a density source term. Since these neutrals typically have a temperature less than $T_i$, the process cools the plasma despite representing a gain of thermal energy. The ionization of neutrals are better thought of as a gain of pressure. These power terms do not obey the power to temperature related above. Instead:
+There is the additional consideration for mechanisms that affect the ion density and thermal energy at the same time. This includes all the mechanisms that affects density, as any given 'new' population of ions will have a certain amount of thermal energy associated with it. A good example of this is the electron impact ionization of neutrals. As stated in section\ref{sec:neutral_physics}, the electron impact ionization of warm neutrals represents a net gain of thermal energy, but it also represents a density source term. Since these neutrals typically have a temperature less than $T_i$, the process cools the plasma despite representing a gain of thermal energy. The ionization of neutrals are better thought of as a gain of pressure. These power terms do not obey the power to temperature related above. Instead:
 \begin{align}
     P &= 3/2k_b \frac{\partial}{\partial t}(n T) \\
     \frac{2P}{3k_b} &= T\partialt n + n \partialt T \\
@@ -37,11 +37,22 @@ There is the additional consideration for mechanisms that affect the ion density
 
 Note that does not directly reflect how these values are calculated in the code, as the figure of merit being calculated and saved by the code is total thermal energy and not temperature. The temperature is only calculated afterwards for comparison to measurement. 
 
+The following is a table of the power density term and their meaning,
+\begin{center}\begin{tabular}{p{1in}|p{3.5in}}
+$P_{\text{eq}}$ & Electron ion equilibration power, see section \ref{sec:equilibration_power}\\ \hline
+$P_{\text{cond}}$ & Classical thermal conduction power, see section \ref{sec:thermal_cond}\\ \hline
+$P_{\text{CX}}$ & Net charge exchange 'transport', $= P_{\text{CX loss}}+P_{\text{e-imp}}$, see section \ref{sec:neutral_physics}\\ \hline
+$P_{\text{CX loss}}$ & Charge exchange loss, see section \ref{sec:neutral_physics}\\ \hline
+$P_{\text{e-imp}}$ & Power from electron impact ionization of hot neutrals, see section \ref{sec:neutral_physics}\\ \hline
+$P_{\text{flow}}$ & Total flow power, $=P_{\text{flow cons}} + P_{\text{comp work}}$, see section \ref{sec:flow_effects}\\ \hline
+$P_{\text{flow cons}}$ & Flow conservation power, see section \ref{sec:flow_effects}\\ \hline
+$P_{\text{comp work}}$ & Compressional work from \ecb pinch, see section \ref{sec:flow_effects} and \ref{sec:eb_pinch}\\ \hline
+$P_{\text{neo}}$ & Neoclassical thermal conduction.\\ \hline
+%$P_{\text{anomalous}}$ & anomalous thermal power, including heating, cooling and transport\\
+$P_{\textit{ad hoc}}$ & \adhoc heating power, used in the model to match edge observations, see section \ref{sec:anomalous_heating}\\
 
-%TODO, actually make this into a table.
-$P_{\text{e-impact}}$ is the net power from electron impact ionization.
-$P_{\text{flow cons}}$
-$P_{\text{comp work}}$
+
+\end{tabular}\end{center}
 
 
 \section{Relating to charge exchange spectroscopy}
@@ -52,7 +63,7 @@ Further, there is the minor distinction made in this these between ion Doppler s
 
 \section{The radial coordinate $\rho_v$}\label{app:rhov}
 
-The radial coordinate used for the modeling in this work is is $\rho_v$ as opposed to the more straight forward minor radius r. $\rho_v$ is, approximately, the radius of the relevant flux surface, since flux surfaces in axisymmetric MST plasmas are nearly perfect circles. Alternatively, it is equivalent to the volume average minor radius to the magnetic axis. It is chosen over the minor radius r as the radial coordinate for two reasons. Firstly, it better accounts for the fact that the flux surfaces are Shafronov-shifted outwards by a varying amount, and secondly, existing code important to this modeling work, in particular MSTfit, uses $\rho_v$ as it's radial coordinates. However, in these PPCD plasmas the ultimately difference between r and $\rho_v$ is small, especially in terms of $r/a$ vs $\rho_v/a$, typically within or close to the radial position uncertainty of any given diagnostic measurement. This is the reason why the impurity levels taken from M. Nornberg's paper\cite{Nornberg2018} is incorporated on a $\frac{r}{a}\approx\frac{\rho_v}{a}$ basis, instead of redoing the analysis in the shifted coordinate. 
+The radial coordinate used for the modeling in this work is is $\rho_v$ as opposed to the more straight forward minor radius r. $\rho_v$ is, approximately, the radius of the relevant flux surface, since flux surfaces in axisymmetric MST plasmas are nearly perfect circles. Alternatively, it is equivalent to the volume average minor radius to the magnetic axis. This radial coordinate is defined and calculated by MSTfit\cite{Anderson2001}. It is chosen over the minor radius r as the radial coordinate for two reasons. Firstly, it better accounts for the fact that the flux surfaces are Shafronov-shifted outwards by a varying amount, and secondly, existing code important to this modeling work, in particular MSTfit, uses $\rho_v$ as it's radial coordinates. However, in these PPCD plasmas the ultimately difference between r and $\rho_v$ is small, especially in terms of $r/a$ vs $\rho_v/a$, typically within or close to the radial position uncertainty of any given diagnostic measurement. This is the reason why the impurity levels taken from M. Nornberg's paper\cite{Nornberg2018} is incorporated on a $\frac{r}{a}\approx\frac{\rho_v}{a}$ basis, instead of redoing the analysis in the shifted coordinate. 
 
 
 \printbibliography
